@@ -1,6 +1,6 @@
 export type TBinary = 0 | 1;
 export type TGateType = "AND" | "OR" | "NOT" | "XOR" | "NAND" | "NOR";
-export type TGate = (a:TBinary, b?:TBinary) => TBinary;
+export type TGate = (a: number, b?: number) => number;
 
 export interface LogicGate {
   id: string;

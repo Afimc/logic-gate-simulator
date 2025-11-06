@@ -1,0 +1,53 @@
+.sidebar {
+  width: 200px;
+  background: #374151;
+  border-right: 1px solid #4b5563;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 10;
+}
+
+.sidebar h3 {
+  color: #e5e7eb;
+  font-size: 16px;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.node-pill {
+  padding: 12px 16px;
+  border-radius: 8px;
+  color: #e5e7eb;
+  cursor: grab;
+  text-align: center;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
+}
+
+.node-pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.node-pill:active {
+  cursor: grabbing;
+}
+
+.node-pill.input {
+  background: #1e40af;
+  border-color: #3b82f6;
+}
+
+.node-pill.default {
+  background: #065f46;
+  border-color: #10b981;
+}
+
+.node-pill.output {
+  background: #92400e;
+  border-color: #f59e0b;
+}
