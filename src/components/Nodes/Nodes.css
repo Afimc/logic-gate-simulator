@@ -56,6 +56,7 @@
   min-width: 80px;
   text-align: center;
   transition: background 0.3s ease;
+  position: relative;
 }
 
 .gate-node.active {
@@ -106,4 +107,81 @@
   font-weight: bold;
   margin-top: 4px;
   color: #000;
+}
+
+/* Tooltip for gate help (long-press) */
+.node-tooltip {
+  position: absolute;
+  top: -8px;
+  left: 100%;
+  margin-left: 8px;
+  z-index: 1000;
+  background: #ffffff;
+  color: #111827;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  padding: 10px;
+  min-width: 180px;
+  max-width: 240px;
+  transform: scale(0.8);
+  transform-origin: top left;
+}
+
+.node-info-btn {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  width: 10px;
+  height: 10px;
+  line-height: 18px;
+  border-radius: 50%;
+  border: 1px solid #9ca3af;
+  background: #f9fafb;
+  color: #111827;
+  font-weight: 700;
+  font-size: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.node-info-btn:hover {
+  background: #eef2ff;
+  border-color: #6366f1;
+  color: #3730a3;
+}
+
+.node-info-btn:focus,
+.node-info-btn:focus-visible,
+.node-info-btn:active {
+  outline: none;
+  box-shadow: none;
+}
+
+.node-tooltip-title {
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.node-tooltip-desc {
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+.node-tooltip-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.node-tooltip-table th,
+.node-tooltip-table td {
+  border: 1px solid #e5e7eb;
+  padding: 4px 6px;
+  text-align: center;
 }

@@ -1,6 +1,8 @@
 import React from "react";
 import { Handle, Position } from "reactflow";
 import "./Nodes.css";
+import { gateInfo } from "../../core/logic/GateInfo";
+import InfoTable from "./InfoTable";
 
 // Custom Input Node with toggle between 0 and 1
 export const InputNode = ({ data, id }: any) => {
@@ -32,14 +34,91 @@ export const InputNode = ({ data, id }: any) => {
 // Custom Default Node with 2 input handles on left and 1 output on right
 export const DefaultNode = ({ data }: any) => {
   const outputValue = data.outputValue ?? 0;
-  
+  const isNot = String(data?.label ?? '').toUpperCase() === 'NOT';
+  const [showHelp, setShowHelp] = React.useState(false);
+  const holdTimer = React.useRef<number | null>(null);
+
+  const startHoverHold = () => {
+    if (holdTimer.current) window.clearTimeout(holdTimer.current);
+    holdTimer.current = window.setTimeout(() => setShowHelp(true), 1000);
+  };
+
+  const cancelHoverHold = () => {
+    if (holdTimer.current) {
+      window.clearTimeout(holdTimer.current);
+      holdTimer.current = null;
+    }
+    setShowHelp(false);
+  };
+
+  const toggleHelp = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    if (holdTimer.current) {
+      window.clearTimeout(holdTimer.current);
+      holdTimer.current = null;
+    }
+    // Remove focus to avoid persistent focus ring/border
+    e.currentTarget.blur();
+    setShowHelp((v) => !v);
+  };
+
+  React.useEffect(() => {
+    return () => {
+      if (holdTimer.current) {
+        window.clearTimeout(holdTimer.current);
+      }
+    };
+  }, []);
+
   return (
     <div className={`gate-node ${outputValue === 1 ? 'active' : 'inactive'}`}>
-      <Handle type="target" position={Position.Left} id="input-1" style={{ top: '30%' }} />
-      <Handle type="target" position={Position.Left} id="input-2" style={{ top: '70%' }} />
+      {isNot ? (
+        <Handle type="target" position={Position.Left} id="input-1" style={{ top: '50%' }} />
+      ) : (
+        <>
+          <Handle type="target" position={Position.Left} id="input-1" style={{ top: '30%' }} />
+          <Handle type="target" position={Position.Left} id="input-2" style={{ top: '70%' }} />
+        </>
+      )}
       <div className="gate-node-label">{data.label}</div>
       <div className="gate-node-output">{outputValue}</div>
+      <button
+        className="node-info-btn"
+        aria-label="Gate info"
+        onMouseEnter={(e) => {
+          e.stopPropagation();
+          startHoverHold();
+        }}
+        onMouseLeave={(e) => {
+          e.stopPropagation();
+          cancelHoverHold();
+        }}
+        onClick={toggleHelp}
+        onPointerDown={(e) => e.stopPropagation()}
+      >
+        i
+      </button>
       <Handle type="source" position={Position.Right} id="output" />
+      {showHelp && (
+        <div
+          className="node-tooltip"
+          onMouseEnter={(e) => {
+            e.stopPropagation();
+            if (holdTimer.current) {
+              window.clearTimeout(holdTimer.current);
+              holdTimer.current = null;
+            }
+            setShowHelp(true);
+          }}
+          onMouseLeave={(e) => {
+            e.stopPropagation();
+            cancelHoverHold();
+          }}
+          onMouseDown={(e) => e.stopPropagation()}
+        >
+          <InfoTable label={data?.label} />
+        </div>
+      )}
     </div>
   );
 };

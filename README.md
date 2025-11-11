@@ -5,6 +5,68 @@ You can **drag and drop gates**, **connect them**, toggle **inputs (0 / 1)**, an
 
 ---
 
+## Logic Gates
+
+Below are brief explanations and truth tables for each supported gate. Inputs are labeled `A` and `B` (except `NOT`, which only uses `A`). Labels match the app: AND, OR, NOT, XOR, NAND, NOR.
+
+### AND (conjunction)
+Outputs 1 only if both inputs are 1.
+
+| A | B | AND |
+|---|---|-----|
+| 0 | 0 |  0  |
+| 0 | 1 |  0  |
+| 1 | 0 |  0  |
+| 1 | 1 |  1  |
+
+### OR (disjunction)
+Outputs 1 if at least one input is 1.
+
+| A | B | OR |
+|---|---|----|
+| 0 | 0 | 0  |
+| 0 | 1 | 1  |
+| 1 | 0 | 1  |
+| 1 | 1 | 1  |
+
+### XOR (exclusive OR)
+Outputs 1 if exactly one input is 1.
+
+| A | B | XOR |
+|---|---|-----|
+| 0 | 0 |  0  |
+| 0 | 1 |  1  |
+| 1 | 0 |  1  |
+| 1 | 1 |  0  |
+
+### NAND (NOT AND)
+Outputs the inverse of AND.
+
+| A | B | NAND |
+|---|---|------|
+| 0 | 0 |  1   |
+| 0 | 1 |  1   |
+| 1 | 0 |  1   |
+| 1 | 1 |  0   |
+
+### NOR (NOT OR)
+Outputs the inverse of OR.
+
+| A | B | NOR |
+|---|---|-----|
+| 0 | 0 |  1  |
+| 0 | 1 |  0  |
+| 1 | 0 |  0  |
+| 1 | 1 |  0  |
+
+### NOT (inverter)
+Outputs the inverse of a single input `A`.
+
+| A | NOT |
+|---|-----|
+| 0 |  1  |
+| 1 |  0  |
+
 ## 🧩 Features
 
 - 🧠 Logic gates: **AND**, **OR**, **NOT**, **XOR**, **NAND**, **NOR**
