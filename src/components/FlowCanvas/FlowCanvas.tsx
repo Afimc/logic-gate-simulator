@@ -252,3 +252,12 @@ export default function FlowCanvas() {
     </div>
   );
 }
+
+
+
+
+  // const { screenToFlowPosition, fitView } = useReactFlow();
+
+  // const handleFitView = useCallback(() => {
+  //   fitView({ padding: 0.2, duration: 400 });
+  // }, [fitView]);

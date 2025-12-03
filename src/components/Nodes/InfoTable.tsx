@@ -1,4 +1,4 @@
-import React from "react";
+
 import { gateInfo } from "../../core/logic/GateInfo";
 
 interface InfoTableProps {

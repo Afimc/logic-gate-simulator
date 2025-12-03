@@ -1,11 +1,10 @@
 import React from "react";
 import { Handle, Position } from "reactflow";
 import "./Nodes.css";
-import { gateInfo } from "../../core/logic/GateInfo";
 import InfoTable from "./InfoTable";
 
 // Custom Input Node with toggle between 0 and 1
-export const InputNode = ({ data, id }: any) => {
+export const InputNode = ({ data }: any) => {
   const [value, setValue] = React.useState(data.value ?? 0);
 
   const toggleValue = (e: React.MouseEvent) => {
